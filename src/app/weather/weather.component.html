@@ -1,4 +1,10 @@
-<h2>Temperature</h2>
-<p>Current: {{temperatureData?.temp}}</p>
-<p>High: {{temperatureData?.temp_max}}</p>
-<p>Low: {{temperatureData?.temp_min}}</p>
+<div class="weather-container">
+    <div>
+        <i class="wi wi-night-cloudy-windy secondary"></i>&nbsp;
+        <span class="current-temp">{{temperatureData?.temp | number:'0.0-0'}}&deg;</span>
+    </div>
+    <!-- <div>
+        <span class="high-temp secondary">High: {{temperatureData?.temp_max | number:'0.0-0'}}&deg;</span>
+        <span class="low-temp secondary">Low: {{temperatureData?.temp_min | number:'0.0-0'}}&deg;</span>
+    </div> -->
+</div>

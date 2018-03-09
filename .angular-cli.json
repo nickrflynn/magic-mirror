@@ -19,7 +19,8 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "mirror",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "../src/assets/css/weather-icons.min.css"
       ],
       "scripts": [
       ],

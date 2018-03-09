@@ -1,0 +1,14 @@
+.time-container {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+
+    .date-line {
+        font-size: 30px;
+    }
+
+    .time-line {
+        font-size: 50px;
+        font-weight: bold;
+    }
+}

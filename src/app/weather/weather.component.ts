@@ -8,25 +8,31 @@ import { HttpClient } from '@angular/common/http';
 })
 export class WeatherComponent implements OnInit {
 
-  private key: string;
+  private apiKey: string;
 
   public temperatureData: ITemperatureData;
+  public weatherIconClass: string;
 
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
     this.http.get('./../assets/mirror-config.json').subscribe((data) => {
-      this.key = data['openWeatherMapApiKey'];
+      this.apiKey = data['openWeatherMapApiKey'];
       this.getCurrentWeather();
     });
   }
 
   public getCurrentWeather(): void {
     const apiResponse =
-      this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=Provo&units=imperial&&APPID=${this.key}`);
+      this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=Provo&units=imperial&&APPID=${this.apiKey}`);
       apiResponse.subscribe((weather: IWeatherData) => {
         this.temperatureData = weather.main;
+        this.setIconClass(weather.weather[0].id);
     });
+  }
+
+  private setIconClass(id: string): void {
+    this.weatherIconClass = 'wi-day-sunny';
   }
 }
 
@@ -41,6 +47,7 @@ class ITemperatureData {
 
 class IWeatherData {
   main: ITemperatureData;
+  weather: any;
 }
 
 

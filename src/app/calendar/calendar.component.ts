@@ -31,27 +31,29 @@ export class CalendarComponent implements OnInit {
       .get(`https://www.googleapis.com/calendar/v3/calendars/${this.id}/events/?${this.getQueryParameters(1)}&key=${this.key}`);
     response.subscribe((calendar: ICalendarInfo) => {
       this.todaysEvents = calendar.items;
-      console.log(this.todaysEvents);
     });
   }
 
   private setWeeksCalendarEvents(): void {
     const response = this.http
-      .get(`https://www.googleapis.com/calendar/v3/calendars/${this.id}/events/?${this.getQueryParameters(7)}&key=${this.key}`);
+      .get(`https://www.googleapis.com/calendar/v3/calendars/${this.id}/events/?${this.getQueryParameters(8, 1)}&key=${this.key}`);
     response.subscribe((calendar: ICalendarInfo) => {
       this.weeksEvents = calendar.items;
-      console.log(this.weeksEvents);
     });
   }
 
-  private getQueryParameters(days: number): string {
+  private getQueryParameters(days: number, skip: number = 0): string {
     const parameters: Array<string> = [];
+
+    parameters.push('singleEvents=True');
+    parameters.push('orderBy=startTime');
 
     const maxDate = new Date();
     maxDate.setTime(maxDate.getTime() + (1000 * 3600 * 24 * days));
     parameters.push(`timeMax=${maxDate.toISOString()}`);
 
     const today: Date = new Date();
+    today.setTime(today.getTime() + (1000 * 3600 * 24 * skip));
     parameters.push(`timeMin=${today.toISOString()}`);
 
     let query = '';
@@ -63,7 +65,6 @@ export class CalendarComponent implements OnInit {
       query += parameters[i];
     }
 
-    console.log(query);
     return query;
   }
 

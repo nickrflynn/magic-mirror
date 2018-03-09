@@ -1,6 +1,5 @@
-<h2>Time</h2>
-<p>{{time | amDateFormat:'LT'}}</p>
-
-<h2>Date</h2>
-<p>{{date | amDateFormat:'LL'}}</p>
+<div class="time-container">
+    <div class="date-line secondary">{{date | amDateFormat:'dddd'}} {{date | amDateFormat:'LL'}}</div>
+    <div class="time-line">{{time | amDateFormat:'LT'}}</div>
+</div>
 
