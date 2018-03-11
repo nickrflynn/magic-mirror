@@ -24,15 +24,23 @@ export class WeatherComponent implements OnInit {
 
   public getCurrentWeather(): void {
     const apiResponse =
-      this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=Provo&units=imperial&&APPID=${this.apiKey}`);
-      apiResponse.subscribe((weather: IWeatherData) => {
-        this.temperatureData = weather.main;
-        this.setIconClass(weather.weather[0].id);
+      this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=84606&units=imperial&&APPID=${this.apiKey}`);
+    apiResponse.subscribe((weather: IWeatherData) => {
+      this.temperatureData = weather.main;
+      this.setIconClass(weather.weather[0].id);
     });
   }
 
-  private setIconClass(id: string): void {
-    this.weatherIconClass = 'wi-day-sunny';
+  private setIconClass(id: number): void {
+    const prefix = 'wi wi-';
+    this.http.get('./../assets/icons.json')
+      .subscribe((icons: any) => {
+        if (!(id > 699 && id < 800) && !(id > 899 && id < 1000)) {
+          this.weatherIconClass = 'day-' + icons[id].icon;
+        }
+
+        this.weatherIconClass = prefix + this.weatherIconClass;
+      });
   }
 }
 

@@ -1,6 +1,6 @@
 <div class="weather-container">
     <div>
-        <i class="wi wi-night-cloudy-windy secondary"></i>&nbsp;
+        <i class="secondary" [ngClass]="weatherIconClass"></i>&nbsp;
         <span class="current-temp">{{temperatureData?.temp | number:'0.0-0'}}&deg;</span>
     </div>
     <!-- <div>
