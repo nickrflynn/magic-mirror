@@ -24,7 +24,7 @@ export class WeatherComponent implements OnInit {
 
   public getCurrentWeather(): void {
     const apiResponse =
-      this.http.get(`http://api.openweathermap.org/data/2.5/weather?q=Provo&units=imperial&&APPID=${this.apiKey}`);
+      this.http.get(`https://api.openweathermap.org/data/2.5/weather?q=Provo&units=imperial&&APPID=${this.apiKey}`);
       apiResponse.subscribe((weather: IWeatherData) => {
         this.temperatureData = weather.main;
         this.setIconClass(weather.weather[0].id);

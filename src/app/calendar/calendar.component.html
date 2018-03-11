@@ -1,6 +1,12 @@
 <div class="calendar-container">
-    <h2>Today</h2>
-    <p *ngFor="let event of todaysEvents"><span class="secondary">{{formatStartTime(event.start) | amDateFormat:'h:mm A'}} - </span>{{event.summary}}</p>
-    <h2>This Week</h2>
-    <p *ngFor="let event of weeksEvents"><span class="secondary">{{formatStartTime(event.start) | amDateFormat:'dddd, Do'}} - </span>{{event.summary}}</p>
+    <div *ngIf="todaysEvents.length > 0">
+        <h2>Today</h2>
+        <p *ngFor="let event of todaysEvents">
+            <span class="secondary">{{formatStartTime(event.start) | amDateFormat:'h:mm A'}} - </span>{{event.summary}}</p>
+    </div>
+    <div *ngIf="weeksEvents.length > 0">
+        <h2>This Week</h2>
+        <p *ngFor="let event of weeksEvents">
+            <span class="secondary">{{formatStartTime(event.start) | amDateFormat:'dddd, Do'}} - </span>{{event.summary}}</p>
+    </div>
 </div>

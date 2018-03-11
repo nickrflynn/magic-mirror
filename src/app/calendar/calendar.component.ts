@@ -11,8 +11,8 @@ export class CalendarComponent implements OnInit {
   private key: string;
   private id: string;
 
-  public todaysEvents: Array<IEvent>;
-  public weeksEvents: Array<IEvent>;
+  public todaysEvents: Array<IEvent> = [];
+  public weeksEvents: Array<IEvent> = [];
 
   constructor(private http: HttpClient) {
   }
